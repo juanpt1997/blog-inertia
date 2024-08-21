@@ -17,15 +17,15 @@ use Inertia\Inertia;
 |
 */
 
-Route::inertia('/', 'Home')->middleware(['auth', 'verified'])->name('home');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    Route::resource('posts', PostController::class)->except(['index']);
+    Route::get('/', [PostController::class, 'index'])->name('home');
+    Route::inertia('about', 'About')->name('about'); // first argument is the url, second is the name of the component and third is the name we give to it
 });
 
-Route::resource('posts', PostController::class);
-Route::inertia('about', 'About')->middleware(['auth', 'verified'])->name('about'); // first argument is the url, second is the name of the component and third is the name we give to it
 
 require __DIR__.'/auth.php';
