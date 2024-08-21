@@ -35,7 +35,7 @@ export function Index({ posts }) {
                                 Edit Post
                             </Link>
 
-                            <button className="px-4 py-2 text-white bg-gray-400 rounded-md hover:bg-gray-500">
+                            <button className="px-3 py-2 text-white bg-gray-400 rounded-md hover:bg-gray-500">
                                 Delete Post
                             </button>
                         </div>
