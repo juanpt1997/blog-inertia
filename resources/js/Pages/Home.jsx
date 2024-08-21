@@ -2,7 +2,7 @@ import { Index as Posts } from "../Pages/Posts/Index";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
-export default function Home({ auth, posts }) {
+export default function Home({ auth, flash, posts }) {
     return (
         <AuthenticatedLayout
             user={auth.user}

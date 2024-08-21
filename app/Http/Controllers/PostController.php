@@ -33,7 +33,8 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         $post = Post::create($request->validated());
-        return redirect()->route('home');
+
+        return redirect()->route('home')->with('message', 'Post created');
     }
 
     /**
@@ -63,7 +64,7 @@ class PostController extends Controller
     {
         $post->update($request->validated());
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message', 'Post updated');
     }
 
     /**
@@ -72,6 +73,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('home');
+        return redirect()->route('home')->with('message', 'Post deleted');
     }
 }
