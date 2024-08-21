@@ -1,27 +1,27 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, useForm } from "@inertiajs/react";
 
-export default function Create({auth}) {
-    const {data, setData, post, processing, errors} = useForm({
-        author: "",
-        title: "",
-        body: "",
+export default function Edit({auth, post}) {
+    const {data, setData, put, processing, errors} = useForm({
+        author: post.author || "",
+        title: post.title || "",
+        body: post.body || "",
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        post(route("posts.store"));
+        put(route("posts.update", post.id));
     }
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                    New Post
+                    Update {post.title}
                 </h2>
             }
         >
-            <Head title="Create Post" />
+            <Head title="Update Post" />
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -76,7 +76,7 @@ export default function Create({auth}) {
                                         disabled={processing}
                                         className="inline-block px-4 py-2 mt-4 ml-4 text-white bg-purple-500 rounded-md hover:bg-purple-600"
                                     >
-                                        Create Post
+                                        Update Post
                                     </button>
                                 </div>
                             </form>
