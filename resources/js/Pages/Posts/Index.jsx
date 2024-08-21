@@ -1,6 +1,9 @@
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 
 export function Index({ posts }) {
+    function deletePost(postId) {
+        router.delete(route("posts.destroy", postId));
+    }
     return (
         <div>
             <div className="flex">
@@ -35,7 +38,15 @@ export function Index({ posts }) {
                                 Edit Post
                             </Link>
 
-                            <button className="px-3 py-2 text-white bg-gray-400 rounded-md hover:bg-gray-500">
+                            <button
+                                onClick={() => {
+                                    if (
+                                        confirm("Are you sure you want to delete this post?")
+                                    ){
+                                        deletePost(post.id);
+                                    }
+                                }}
+                             className="px-3 py-2 text-white bg-gray-400 rounded-md hover:bg-gray-500">
                                 Delete Post
                             </button>
                         </div>
